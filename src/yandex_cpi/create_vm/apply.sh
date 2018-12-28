@@ -1,5 +1,3 @@
-cat .work/request.json
-
 VM_ID=vm-$(uuidgen | tr '[:upper:]' '[:lower:]')
 AGENT_NAME=$(jq -r '.arguments[0]' .work/request.json)
 STEMCELL_ID=$(jq -r '.arguments[1]' .work/request.json)
