@@ -1,0 +1,1 @@
+echo '{"result":{"stemcell_formats":["yandex_vhd"]}}'

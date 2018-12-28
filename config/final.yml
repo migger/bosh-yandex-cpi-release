@@ -1,0 +1,6 @@
+name: bosh-yandex-cpi
+blobstore:
+  provider: s3
+  options:
+    bucket_name: native-clouds-blobs
+    host: storage.yandexcloud.net

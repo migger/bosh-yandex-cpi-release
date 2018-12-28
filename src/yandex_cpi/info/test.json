@@ -1,0 +1,13 @@
+{
+  "method": "info",
+  "arguments": [],
+  "context": {
+    "director_uuid": "c12d267e-7a2b-43fd-7180-742b4ec1e8ff",
+    "vm": {
+      "stemcell": {
+        "api_version": 2
+      }
+    }
+  },
+  "api_version": 1
+}

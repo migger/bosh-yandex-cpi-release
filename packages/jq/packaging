@@ -1,0 +1,8 @@
+set -e
+
+PLATFORM=`uname | tr '[:upper:]' '[:lower:]'`
+
+mkdir -p ${BOSH_INSTALL_TARGET}/bin
+
+cp -av jq/jq-${PLATFORM}64 ${BiOSH_INSTALL_TARGET}/bin/jq
+chmod +x ${BiOSH_INSTALL_TARGET}/bin/jq

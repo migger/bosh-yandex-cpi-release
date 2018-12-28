@@ -1,0 +1,16 @@
+jq/jq-darwin64:
+  size: 864040
+  object_id: 70089ed2-3f35-4016-4bd3-19b903e8456a
+  sha: 8673400d1886ed051b40fe8dee09d89237936502
+jq/jq-linux64:
+  size: 3953824
+  object_id: f50d195f-59d5-4cf0-55d6-e0ed194c03e0
+  sha: 056ba5d6bbc617c29d37158ce11fd5a443093949
+yandex-cloud-cli/yc-darwin-amd64-0.9.2:
+  size: 29974768
+  object_id: 4647286c-dd92-451a-5e6c-135db3a12fd6
+  sha: beb0e4fba63a01a77cbf7705c2b9d09b6e08a229
+yandex-cloud-cli/yc-linux-amd64-0.9.2:
+  size: 30554674
+  object_id: 3170491a-fa82-44a4-656a-b6ff064c01b6
+  sha: 6daefcaaf5aafb72029336e1e4a781c533924a3c

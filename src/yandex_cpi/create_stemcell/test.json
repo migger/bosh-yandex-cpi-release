@@ -1,0 +1,28 @@
+{
+  "method": "create_stemcell",
+  "arguments": [
+    "./create_stemcell/test.image",
+    {
+      "architecture": "x86_64",
+      "container_format": "bare",
+      "disk": 3072,
+      "disk_format": "vhd",
+      "hypervisor": "kvm",
+      "infrastructure": "yandex",
+      "name": "bosh-yandex-kvm-ubuntu-xenial-go_agent",
+      "os_distro": "ubuntu",
+      "os_type": "linux",
+      "root_device_name": "/dev/vda1",
+      "version": "1.0"
+    }
+  ],
+  "context": {
+    "director_uuid": "c12d267e-7a2b-43fd-7180-742b4ec1e8ff",
+    "vm": {
+      "stemcell": {
+        "api_version": 2
+      }
+    }
+  },
+  "api_version": 1
+}

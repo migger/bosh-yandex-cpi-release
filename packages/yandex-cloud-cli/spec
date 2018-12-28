@@ -1,0 +1,8 @@
+---
+name: yandex-cloud-cli
+
+dependencies: []
+
+files:
+- yandex-cloud-cli/yc-darwin-amd64-0.9.2
+- yandex-cloud-cli/yc-linux-amd64-0.9.2

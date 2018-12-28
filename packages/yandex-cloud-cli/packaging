@@ -1,0 +1,8 @@
+set -e -x
+
+PLATFORM=`uname | tr '[:upper:]' '[:lower:]'`
+YC_VERSION=`ls -r yandex-cloud-cli/yc-${PLATFORM}-* | sed "s/yandex-cloud-cli\/yc-${PLATFORM}-amd64-\(.*\)/\1/" | head -1`
+
+mkdir -p ${BOSH_INSTALL_TARGET}/bin
+cp ${BOSH_COMPILE_TARGET}/yandex-cloud-cli/yc-${PLATFORM}-amd64-${YC_VERSION} ${BOSH_INSTALL_TARGET}/bin/yc
+chmod +x ${BOSH_INSTALL_TARGET}/bin/yc

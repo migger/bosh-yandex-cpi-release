@@ -1,0 +1,4 @@
+set -e -x
+cp -Rv yandex_cpi/* $BOSH_INSTALL_TARGET/
+
+
