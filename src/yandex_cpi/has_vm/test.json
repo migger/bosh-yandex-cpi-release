@@ -1,0 +1,15 @@
+{
+  "method": "has_vm",
+  "arguments": [
+    "vm-5c4271b6-c231-425c-8f89-7b2c74cda87a"
+  ],
+  "context": {
+    "director_uuid": "4d9a5d66-62f7-49f7-6cb7-248be41ff209",
+    "vm": {
+      "stemcell": {
+        "api_version": 2
+      }
+    }
+  },
+  "api_version": 1
+}
