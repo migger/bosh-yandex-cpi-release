@@ -15,7 +15,7 @@ yc --token $YC_PASSPORT_TOKEN \
    --folder-name $YC_FOLDER_NAME \
    --format json \
    compute instance create \
-   --zone ru-central1-c \
+   --zone $YC_ZONE \
    --name $VM_ID \
    --create-boot-disk name=disk1,image-name=${STEMCELL_ID} \
    --memory 1 \
@@ -25,4 +25,4 @@ yc --token $YC_PASSPORT_TOKEN \
    --network-interface subnet-name=${YC_SUBNETWORK},address=${IP}\
    1>&2
 
-exit 1
+echo '{"result":"'$VM_ID'"}'

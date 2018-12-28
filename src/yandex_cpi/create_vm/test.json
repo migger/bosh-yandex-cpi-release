@@ -2,7 +2,7 @@
   "method": "create_vm",
   "arguments": [
     "2553a6d9-6a42-4931-5376-fe287dd492bd",
-    "stemcell-d3b07201-cc86-4739-a73d-59940e05cc42",
+    "stemcell-a4573559-29cb-4d15-93af-307bc9be339b",
     {},
     {
       "default": {
