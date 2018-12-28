@@ -16,7 +16,7 @@ echo host_base = storage.yandexcloud.net >> .work/.s3cfg
 echo 'host_bucket = %(bucket)s.storage.yandexcloud.net' >> .work/.s3cfg
 
 cd .work
-cat ./image | tar -x 1>&2
+cat ./image | tar -xz 1>&2
 ls -l 1>&2
 mv -v root.vhd $1 1>&2
 
