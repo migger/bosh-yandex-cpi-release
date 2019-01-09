@@ -18,7 +18,7 @@ echo 'host_bucket = %(bucket)s.storage.yandexcloud.net' >> .work/.s3cfg
 cd .work
 cat ./image | tar -xz 1>&2
 ls -l 1>&2
-mv -v root.vhd $1 1>&2
+mv -v root.img $1 1>&2
 
 s3cmd --config .s3cfg put $1 s3://$YC_BUCKET_NAME/stemcells/$1 1>&2
 

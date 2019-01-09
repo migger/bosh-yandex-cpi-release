@@ -1,1 +1,1 @@
-echo '{"result":{"stemcell_formats":["yandex_vhd"]}}'
+echo '{"result":{"stemcell_formats":["yandex-qcow2"]}}'

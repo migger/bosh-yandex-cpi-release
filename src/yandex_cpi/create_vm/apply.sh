@@ -6,7 +6,51 @@ NETWORKS=$(jq -r '.arguments[3]' .work/request.json)
 DISKS=$(jq -r '.arguments[4]' .work/request.json)
 ENVIRONMENT=$(jq -r '.arguments[5]' .work/request.json)
 
+DIRECTOR_ID=$(jq -r '.context.director_uuid' .work/request.json)
+
 IP=$(echo $NETWORKS | jq -r .default.ip)
+
+EPH_DISK_DEVICE_NAME=vol-$(head /dev/urandom | tr -dc a-z0-9 | head -c 16)
+SYS_DISK_DEVICE_NAME=vol-$(head /dev/urandom | tr -dc a-z0-9 | head -c 16)
+PER_DISK_DEVICE_NAME=vol-$(head /dev/urandom | tr -dc a-z0-9 | head -c 16)
+
+echo '{' > .work/user-data.json
+echo '	"agent_id": "'$AGENT_NAME'",' >> .work/user-data.json
+echo '	"blobstore": {' >> .work/user-data.json
+echo '		"options": {' >> .work/user-data.json
+echo '			"blobstore_path": "/var/vcap/micro_bosh/data/cache"' >> .work/user-data.json
+echo '		},' >> .work/user-data.json
+echo '		"provider": "local"' >> .work/user-data.json
+echo '	},' >> .work/user-data.json
+echo '	"disks": {' >> .work/user-data.json
+echo '		"system": "/dev/disk/by-id/'$SYS_DISK_DEVICE_NAME'-part1",' >> .work/user-data.json
+echo '		"ephemeral": {"id": "'$EPH_DISK_DEVICE_NAME'-part1"},' >> .work/user-data.json
+echo '		"persistent": {' >> .work/user-data.json
+echo '			"'$PER_DISK_DEVICE_NAME'": {"id": "'$PER_DISK_DEVICE_NAME'"}' >> .work/user-data.json
+echo '		}' >> .work/user-data.json
+echo '	},' >> .work/user-data.json
+echo '	"env": ' >> .work/user-data.json
+jq -r '.arguments[5]' .work/request.json >> .work/user-data.json
+echo '	,' >> .work/user-data.json
+#echo ' "trusted_certs": "very\nlong\nmultiline\nstring"' >> .work/user-data.json
+echo '	"mbus": "https://vcap:vcap@0.0.0.0:6868",' >> .work/user-data.json
+echo '	"networks": ' >> .work/user-data.json
+echo '	   '$NETWORKS >> .work/user-data.json
+echo '	,' >> .work/user-data.json
+echo '	"ntp": [' >> .work/user-data.json
+#echo '		"0.north-america.pool.ntp.org",' >> .work/user-data.json
+#echo '		"1.north-america.pool.ntp.org",' >> .work/user-data.json
+#echo '		"2.north-america.pool.ntp.org",' >> .work/user-data.json
+#echo '		"3.north-america.pool.ntp.org"' >> .work/user-data.json
+echo ' 	],' >> .work/user-data.json
+echo '	"vm": {' >> .work/user-data.json
+echo '		"name": "'$VM_ID'"' >> .work/user-data.json
+echo '	}' >> .work/user-data.json
+echo '}' >> .work/user-data.json
+
+cat .work/user-data.json 1>&2
+
+#base64 .work/user-data.json > .work/user-data.json.b64
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
@@ -15,11 +59,13 @@ yc --token $YC_PASSPORT_TOKEN \
    compute instance create \
    --zone $YC_ZONE \
    --name $VM_ID \
-   --create-boot-disk name=disk1,image-name=${STEMCELL_ID} \
+   --create-boot-disk name=system,device-name=${SYS_DISK_DEVICE_NAME},image-name=${STEMCELL_ID},size=6 \
+   --create-disk name=director-${DIRECTOR_ID},device-name=${PER_DISK_DEVICE_NAME},size=1 \
    --memory 1 \
    --cores 1 \
    --core-fraction 5 \
    --hostname $VM_ID \
+   --metadata-from-file user-data=.work/user-data.json \
    --network-interface subnet-name=${YC_SUBNETWORK},address=${IP}\
    1>&2
 
