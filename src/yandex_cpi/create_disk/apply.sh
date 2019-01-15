@@ -12,8 +12,10 @@ yc --token $YC_PASSPORT_TOKEN \
    --name $DISK_ID \
    --size $DISK_SIZE_GB \
    1>&2
-if [ "$?" == "0" ]; then
-	echo '{"result":"'$DISK_ID'"}'
-else
+if [ "$?" != "0" ]; then
 	echo "ERROR"
+	exit 1
 fi
+
+echo '{"result":"'$DISK_ID'"}'
+
