@@ -7,5 +7,6 @@ yc --token $YC_PASSPORT_TOKEN \
    compute instance delete \
    $VM_ID \
    1>&2
+
 echo {}
 
