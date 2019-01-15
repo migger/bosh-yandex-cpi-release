@@ -7,10 +7,5 @@ yc --token $YC_PASSPORT_TOKEN \
    compute instance delete \
    $VM_ID \
    1>&2
-
-if [ $? -eq 0 ]; then
-	echo {}
-else
-	exit 1
-fi
+echo {}
 
