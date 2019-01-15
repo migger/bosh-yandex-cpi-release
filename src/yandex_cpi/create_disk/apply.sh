@@ -11,6 +11,7 @@ yc --token $YC_PASSPORT_TOKEN \
    compute disk create \
    --name $DISK_ID \
    --size $DISK_SIZE_GB \
+   --zone $YC_ZONE \
    1>&2
 if [ "$?" != "0" ]; then
 	echo "ERROR"

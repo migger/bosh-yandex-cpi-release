@@ -1,16 +1,1 @@
-{
-  "method": "delete_vm",
-  "arguments": [
-    "2553a6d9-6a42-4931-5376-fe287dd492bd"
-  ],
-  "context": {
-    "director_uuid": "a01b99b8-9792-49b1-737d-93767f4e5d7c",
-    "vm": {
-      "stemcell": {
-        "api_version": 2
-      }
-    }
-  },
-  "api_version": 1
-}
-
+{"method":"attach_disk","arguments":["vm-305c9172-7e2a-4ee7-abeb-07b27cfb5f85","vm-305c9172-7e2a-4ee7-abeb-07b27cfb5f85-h7q707ygi9th1us0"],"context":{"director_uuid":"9ddd47fd-aab1-4573-6733-68d472a-4ee7-abeb-07b27cfb5f85-h7q707ygi9th1us0"],"context":{"director_uuid":"9ddd47fd-aab1-4573-6733-68d47bd5084f","vm":{"stemcell":{"api_version":2}}},"api_version":1}

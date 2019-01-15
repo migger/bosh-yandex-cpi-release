@@ -3,26 +3,6 @@ DISK_ID=$(jq -r '.arguments[1]' .work/request.json)
 
 PER_DISK_DEVICE_NAME=vol-$(head /dev/urandom | tr -dc a-z0-9 | head -c 16)
 
-echo '{' > .work/user-data.json
-echo '	"agent_id": "'$AGENT_NAME'",' >> .work/user-data.json
-echo '	"disks": {' >> .work/user-data.json
-echo '		"system": "/dev/disk/by-id/'$SYS_DISK_DEVICE_NAME'-part1",' >> .work/user-data.json
-echo '		"ephemeral": {"id": "'$EPH_DISK_DEVICE_NAME'-part1"},' >> .work/user-data.json
-echo '		"persistent": {' >> .work/user-data.json
-echo '			"'$PER_DISK_DEVICE_NAME'": {"id": "'$PER_DISK_DEVICE_NAME'"}' >> .work/user-data.json
-echo '		}' >> .work/user-data.json
-echo '	},' >> .work/user-data.json
-echo '	"env": ' >> .work/user-data.json
-jq -r '.arguments[5]' .work/request.json >> .work/user-data.json
-echo '	,' >> .work/user-data.json
-echo '	"networks": ' >> .work/user-data.json
-echo '	   '$NETWORKS >> .work/user-data.json
-echo '	,' >> .work/user-data.json
-echo '	"vm": {' >> .work/user-data.json
-echo '		"name": "'$VM_ID'"' >> .work/user-data.json
-echo '	}' >> .work/user-data.json
-echo '}' >> .work/user-data.json
-
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
    --folder-name $YC_FOLDER_NAME \
@@ -36,3 +16,4 @@ yc --token $YC_PASSPORT_TOKEN \
 curl -k https://mbus:qx6og3qijbn4e8nbilbq@10.0.0.6:6868/agent -X POST \
  --data '{"method": "add_persistent_disk", "payload":{"arguments":["'${PER_DISK_DEVICE_NAME}'", {"id": "'${PER_DISK_DEVICE_NAME}'"}]}}' 1>&2
 
+echo '{}'
