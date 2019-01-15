@@ -4,6 +4,7 @@ pkgs_dir=${BOSH_PACKAGES_DIR:-/var/vcap/packages}
 jobs_dir=${BOSH_JOBS_DIR:-/var/vcap/jobs}
 
 cmd="sh -x $pkgs_dir/yandex_cpi/cpi.sh \
+              $jobs_dir/yandex_cpi/config/env.json
               <%= p('yandex_cpi.token') %> \
               <%= p('yandex_cpi.cloud_name') %> \
               <%= p('yandex_cpi.folder_name') %> \

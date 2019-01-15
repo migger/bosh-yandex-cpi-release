@@ -48,9 +48,10 @@ echo '		"name": "'$VM_ID'"' >> .work/user-data.json
 echo '	}' >> .work/user-data.json
 echo '}' >> .work/user-data.json
 
-cat .work/user-data.json 1>&2
 
-#base64 .work/user-data.json > .work/user-data.json.b64
+jq -s '.[0] * .[1]' $YC_ENV_JSON .work/user-data.json > .work/user-data-merged.json
+
+cat .work/user-data-merged.json 1>&2
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
@@ -65,7 +66,7 @@ yc --token $YC_PASSPORT_TOKEN \
    --cores 1 \
    --core-fraction 5 \
    --hostname $VM_ID \
-   --metadata-from-file user-data=.work/user-data.json \
+   --metadata-from-file user-data=.work/user-data-merged.json \
    --network-interface subnet-name=${YC_SUBNETWORK},address=${IP}\
    1>&2
 

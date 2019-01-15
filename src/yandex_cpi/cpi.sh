@@ -4,6 +4,8 @@ export PATH=$PATH:/Users/i.mihailyuk/Downloads/s3cmd-2.0.2
 export PATH=$PATH:$BOSH_PACKAGES_DIR/yandex-cloud-cli/bin:$BOSH_PACKAGES_DIR/jq/bin
 export BASEDIR=$(dirname $0)
 
+export YC_ENV_JSON=$1
+shift
 export YC_PASSPORT_TOKEN=$1
 shift
 export YC_CLOUD_NAME=$1
