@@ -9,8 +9,8 @@ yc --token $YC_PASSPORT_TOKEN \
    --name ${VM_ID} \
    1>&2
 
-if [ "$?" != "0" ]; then 
-  echo '{"result":false}'
-else
+if [ $? -eq 0 ]; then 
   echo '{"result":true}'
+else
+  echo '{"result":false}'
 fi
