@@ -50,3 +50,9 @@ properties:
   agent.mbus:
     description: Agent mbus
 
+  blobstore.provider:
+    description: Provider of the blobstore used by director and agent (dav|local|s3)
+    default: 'local'
+
+  blobstore.path:
+    description: local blobstore path
