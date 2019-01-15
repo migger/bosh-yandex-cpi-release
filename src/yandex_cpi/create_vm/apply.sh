@@ -16,12 +16,6 @@ PER_DISK_DEVICE_NAME=vol-$(head /dev/urandom | tr -dc a-z0-9 | head -c 16)
 
 echo '{' > .work/user-data.json
 echo '	"agent_id": "'$AGENT_NAME'",' >> .work/user-data.json
-echo '	"blobstore": {' >> .work/user-data.json
-echo '		"options": {' >> .work/user-data.json
-echo '			"blobstore_path": "/var/vcap/micro_bosh/data/cache"' >> .work/user-data.json
-echo '		},' >> .work/user-data.json
-echo '		"provider": "local"' >> .work/user-data.json
-echo '	},' >> .work/user-data.json
 echo '	"disks": {' >> .work/user-data.json
 echo '		"system": "/dev/disk/by-id/'$SYS_DISK_DEVICE_NAME'-part1",' >> .work/user-data.json
 echo '		"ephemeral": {"id": "'$EPH_DISK_DEVICE_NAME'-part1"},' >> .work/user-data.json
@@ -32,17 +26,9 @@ echo '	},' >> .work/user-data.json
 echo '	"env": ' >> .work/user-data.json
 jq -r '.arguments[5]' .work/request.json >> .work/user-data.json
 echo '	,' >> .work/user-data.json
-#echo ' "trusted_certs": "very\nlong\nmultiline\nstring"' >> .work/user-data.json
-echo '	"mbus": "https://vcap:vcap@0.0.0.0:6868",' >> .work/user-data.json
 echo '	"networks": ' >> .work/user-data.json
 echo '	   '$NETWORKS >> .work/user-data.json
 echo '	,' >> .work/user-data.json
-echo '	"ntp": [' >> .work/user-data.json
-#echo '		"0.north-america.pool.ntp.org",' >> .work/user-data.json
-#echo '		"1.north-america.pool.ntp.org",' >> .work/user-data.json
-#echo '		"2.north-america.pool.ntp.org",' >> .work/user-data.json
-#echo '		"3.north-america.pool.ntp.org"' >> .work/user-data.json
-echo ' 	],' >> .work/user-data.json
 echo '	"vm": {' >> .work/user-data.json
 echo '		"name": "'$VM_ID'"' >> .work/user-data.json
 echo '	}' >> .work/user-data.json
