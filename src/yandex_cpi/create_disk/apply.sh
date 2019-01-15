@@ -8,7 +8,7 @@ yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
    --folder-name $YC_FOLDER_NAME \
    --format json \
-   compute disk create \ 
+   compute disk create \
    --name $DISK_ID \
    --size $DISK_SIZE_GB \
    1>&2
