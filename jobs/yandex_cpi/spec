@@ -3,6 +3,7 @@ name: yandex_cpi
 
 templates:
  cpi.erb: bin/cpi
+ env.json.erb: config/env.json
 
 packages:
 - yandex_cpi
@@ -39,3 +40,13 @@ properties:
   yandex_cpi.subnetwork:
     description: "Name of subnetwork to allocate address in"
     default: 'infra'
+
+  ntp:
+    description: List of ntp server IPs. pool.ntp.org attempts to return IPs closest to your location, but you can still specify if needed.
+    default:
+      - 0.pool.ntp.org
+      - 1.pool.ntp.org
+
+  agent.mbus:
+    description: Agent mbus
+
