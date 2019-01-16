@@ -14,6 +14,6 @@ yc --token $YC_PASSPORT_TOKEN \
    1>&2
 
 curl -k https://mbus:qx6og3qijbn4e8nbilbq@10.0.0.6:6868/agent -X POST \
- --data '{"method": "add_persistent_disk", "payload":{"arguments":["'${PER_DISK_DEVICE_NAME}'", {"id": "'${PER_DISK_DEVICE_NAME}'"}]}}' 1>&2
+ --data '{"method": "add_persistent_disk", "arguments":["'${PER_DISK_DEVICE_NAME}'", {"id": "'${PER_DISK_DEVICE_NAME}'"}]}' 1>&2
 
 echo '{}'
