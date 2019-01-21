@@ -56,3 +56,6 @@ properties:
 
   blobstore.path:
     description: local blobstore path
+  
+  mbus:
+    description: Url to connect bosh-init
