@@ -30,10 +30,10 @@ CODE=
 
 while [ "$CODE" != "200" ]; do
     sleep 1
-    CODE=$(curl -o /dev/null -w %{http_code} -k $YC_MBUS -X POST --data {\"method\":\"ping\"})
+    CODE=$(curl -o /dev/null -w %{http_code} -k $YC_MBUS/agent -X POST --data {\"method\":\"ping\"})
 done
 
-TASK_ID=$(curl -k $YC_MBUS -X POST \
+TASK_ID=$(curl -k $YC_MBUS/agent -X POST \
 	--data '{"method":"add_persistent_disk","arguments":["'${PER_DISK_DEVICE_NAME}'",{"id":"'${PER_DISK_DEVICE_NAME}'"}]}' | jq -r .value.agent_task_id)
   
 echo '{}'
