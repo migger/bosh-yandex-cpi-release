@@ -1,1 +1,16 @@
-{"method":"attach_disk","arguments":["vm-305c9172-7e2a-4ee7-abeb-07b27cfb5f85","vm-305c9172-7e2a-4ee7-abeb-07b27cfb5f85-h7q707ygi9th1us0"],"context":{"director_uuid":"9ddd47fd-aab1-4573-6733-68d472a-4ee7-abeb-07b27cfb5f85-h7q707ygi9th1us0"],"context":{"director_uuid":"9ddd47fd-aab1-4573-6733-68d47bd5084f","vm":{"stemcell":{"api_version":2}}},"api_version":1}
+{
+  "method": "attach_disk",
+  "arguments": [
+    "vm-186a48d7-426f-456a-b312-caaf992059e6",
+    "vm-186a48d7-426f-456a-b312-caaf992059e6-2nggit9rro78y0tw"
+  ],
+  "context": {
+    "director_uuid": "1e857c89-5fdb-450a-4cc4-48cfaa7d7d4f",
+    "vm": {
+      "stemcell": {
+        "api_version": 2
+      }
+    }
+  },
+  "api_version": 1
+}
