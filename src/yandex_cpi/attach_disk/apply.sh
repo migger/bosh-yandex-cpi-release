@@ -8,7 +8,8 @@ yc --token $YC_PASSPORT_TOKEN \
    --folder-name $YC_FOLDER_NAME \
    --format json \
    compute instance stop \
-   $VM_ID 
+   $VM_ID \
+   1>&2
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
@@ -40,14 +41,17 @@ yc --token $YC_PASSPORT_TOKEN \
    --format json \
    compute instance update \
    $VM_ID \
-   --metadata-from-file user-data=.work/new_metadata.json
+   --metadata-from-file user-data=.work/new_metadata.json \
+   1>&2
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
    --folder-name $YC_FOLDER_NAME \
    --format json \
    compute instance start \
-   $VM_ID 
+   $VM_ID \
+   1>&2
+
 CODE=
 
 while [ "$CODE" != "200" ]; do
