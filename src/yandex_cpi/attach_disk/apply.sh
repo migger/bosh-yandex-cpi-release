@@ -35,9 +35,5 @@ done
 
 TASK_ID=$(curl -k https://mbus:pq0m1ij9dpjmsblkl4y9@10.0.0.6:6868/agent -X POST \
 	--data '{"method":"add_persistent_disk","arguments":["'${PER_DISK_DEVICE_NAME}'",{"id":"'${PER_DISK_DEVICE_NAME}'"}]}' | jq -r .value.agent_task_id)
-for i in `seq 1 10`;
-do
-   curl -k https://mbus:pq0m1ij9dpjmsblkl4y9@10.0.0.6:6868/agent -X POST   --data '{"method":"get_task","arguments":["'${TASK_ID}'"]}'
-done
   
 echo '{}'
