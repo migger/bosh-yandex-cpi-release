@@ -31,7 +31,7 @@ yc --token $YC_PASSPORT_TOKEN \
 
 cat .work/old_metadata.json 1>&2
 
-cat .work/old_metadata.json | jq '.disks.persistent."'$GEN_ID'".id="'$GEN_ID'"' > .work/new_metadata.json
+cat .work/old_metadata.json | jq '.disks.persistent."'$GEN_ID'".id="'virtio-$GEN_ID'"' > .work/new_metadata.json
 
 cat .work/new_metadata.json 1>&2
 
