@@ -49,6 +49,7 @@ properties:
 
   agent.mbus:
     description: Agent mbus
+    default: https://mbus:((mbus_bootstrap_password))@0.0.0.0:6868
 
   blobstore.provider:
     description: Provider of the blobstore used by director and agent (dav|local|s3)
