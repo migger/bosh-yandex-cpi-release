@@ -1,0 +1,16 @@
+{
+  "method": "delete_vm",
+  "arguments": [
+    "2553a6d9-6a42-4931-5376-fe287dd492bd"
+  ],
+  "context": {
+    "director_uuid": "a01b99b8-9792-49b1-737d-93767f4e5d7c",
+    "vm": {
+      "stemcell": {
+        "api_version": 2
+      }
+    }
+  },
+  "api_version": 1
+}
+
