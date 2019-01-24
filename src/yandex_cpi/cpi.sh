@@ -6,8 +6,6 @@ export BASEDIR=$(dirname $0)
 
 export YC_ENV_JSON=$1
 shift
-export YC_MBUS=$1
-shift
 export YC_PASSPORT_TOKEN=$1
 shift
 export YC_CLOUD_NAME=$1
