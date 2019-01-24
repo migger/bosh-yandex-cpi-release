@@ -26,8 +26,10 @@ yc --token $YC_PASSPORT_TOKEN \
    --folder-name $YC_FOLDER_NAME \
    --format json \
    compute instance get \
-   --full $VM_ID \
-   | jq -r '.metadata."user-data"' > .work/old_metadata.json
+   --full $VM_ID > .work/vm_info.json
+
+IP=$(cat .work/vm_info.json | jq -r 'network_interfaces[0].primary_v4_address.address')
+cat .work/vm_info.json  | jq -r '.metadata."user-data"' > .work/old_metadata.json
 
 cat .work/old_metadata.json 1>&2
 
@@ -55,11 +57,11 @@ yc --token $YC_PASSPORT_TOKEN \
    $VM_ID \
    1>&2
 
-CODE=
+CODE=000
 
-while [ "$CODE" != "200" ]; do
+while [ "$CODE" -eq "000" ]; do
     sleep 1
-    CODE=$(curl -o /dev/null -w %{http_code} -k $YC_MBUS/agent -X POST --data {\"method\":\"ping\"})
+    CODE=$(curl -o /dev/null -w %{http_code} -k https://$IP:6868/agent -X POST --data {\"method\":\"ping\"})
 done
 
   

@@ -58,5 +58,3 @@ properties:
   blobstore.path:
     description: local blobstore path
     default: /var/vcap/micro_bosh/data/cache 
-  mbus:
-    description: Url to connect bosh-init
