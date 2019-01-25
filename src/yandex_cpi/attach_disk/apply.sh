@@ -28,7 +28,7 @@ yc --token $YC_PASSPORT_TOKEN \
    compute instance get \
    --full $VM_ID > .work/vm_info.json
 
-IP=$(cat .work/vm_info.json | jq -r 'network_interfaces[0].primary_v4_address.address')
+IP=$(cat .work/vm_info.json | jq -r '.network_interfaces[0].primary_v4_address.address')
 cat .work/vm_info.json  | jq -r '.metadata."user-data"' > .work/old_metadata.json
 
 cat .work/old_metadata.json 1>&2
