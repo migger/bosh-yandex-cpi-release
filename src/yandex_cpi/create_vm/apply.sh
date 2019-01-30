@@ -27,7 +27,7 @@ echo '	}' >> .work/user-data.json
 echo '}' >> .work/user-data.json
 
 
-jq -s '.[0] * .[1]' $YC_ENV_JSON .work/user-data.json > .work/user-data-merged.json
+jq -s '.[0].cloud.properties.agent * .[1]' $YC_ENV_JSON .work/user-data.json > .work/user-data-merged.json
 
 cat .work/user-data-merged.json 1>&2
 
