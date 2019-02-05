@@ -43,6 +43,7 @@ yc --token $YC_PASSPORT_TOKEN \
    --cores 1 \
    --core-fraction 5 \
    --hostname $VM_ID \
+   --public-ip \
    --metadata-from-file user-data=.work/user-data-merged.json \
    --network-interface subnet-name=${YC_SUBNETWORK},address=${IP}\
    1>&2
