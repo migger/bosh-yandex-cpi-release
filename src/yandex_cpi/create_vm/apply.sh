@@ -38,7 +38,7 @@ yc --token $YC_PASSPORT_TOKEN \
    compute instance create \
    --zone $YC_ZONE \
    --name $VM_ID \
-   --create-boot-disk name=system,device-name=${SYS_DISK_DEVICE_NAME},image-name=${STEMCELL_ID},size=6 \
+   --create-boot-disk name=system,device-name=${SYS_DISK_DEVICE_NAME},image-name=${STEMCELL_ID},size=12 \
    --memory 4 \
    --cores 4 \
    --core-fraction 5 \
