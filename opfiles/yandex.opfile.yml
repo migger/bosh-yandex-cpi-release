@@ -18,8 +18,19 @@
     name: yandex_cpi
     release: bosh-yandex-cpi
     properties:
-      cert: ((mbus_bootstrap_ssl))
-      mbus: https://mbus:((mbus_bootstrap_password))@((internal_ip)):6868
+      # todo remove once cpi dont know about these
+      agent:
+        mbus: nats://nats:((nats_password))@((internal_ip)):4222
+      ntp:
+      - 0.pool.ntp.org
+      - 1.pool.ntp.org
+      blobstore:
+        address: ((internal_ip))
+        port: 25250
+        provider: dav
+        agent:
+          user: agent
+          password: ((blobstore_agent_password))
 
 - type: replace
   path: /instance_groups/name=bosh/properties/director/cpi_job?
@@ -29,14 +40,6 @@
 - type: replace
   path: /cloud_provider/template?
   value: *cpi_job
-
-- type: replace
-  path: /cloud_provider/properties/mbus?
-  value: https://mbus:((mbus_bootstrap_password))@((internal_ip)):6868
-
-- type: replace
-  path: /cloud_provider/properties/cert?
-  value: ((mbus_bootstrap_ssl))
 
 - type: replace
   path: /resource_pools/name=vms/env/bosh/keep_root_password?
