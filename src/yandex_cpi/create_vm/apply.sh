@@ -47,4 +47,8 @@ yc --token $YC_PASSPORT_TOKEN \
    --network-interface subnet-name=${YC_SUBNETWORK},address=${IP},nat-ip-version=ipv4\
    1>&2
 
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
 echo '{"result":"'$VM_ID'"}'
