@@ -23,12 +23,12 @@ shift
 export YC_SUBNETWORK=$1
 shift
 
-mkdir -p .work
-export HOME=$(pwd)/.work
+mkdir -p /tmp/.work
+export HOME=/tmp/.work
 
-cat > .work/request.json
+cat > /tmp/.work/request.json
 
-METHOD=$(jq -r .method .work/request.json)
+METHOD=$(jq -r .method /tmp/.work/request.json)
 if [ ! -e $BASEDIR/$METHOD/apply.sh ]; then
 	echo '{"error":{"type": "Bosh::Clouds::CloudError","message": "method `'$METHOD'` not suported","ok_to_retry":false}}'
 else
@@ -38,4 +38,4 @@ fi
 
 #export YC_FOLDER_ID=$(yc --token $YC_PASSPORT_TOKEN --format json resource-manager --cloud-id $YC_CLOUD_ID folder get --name $YC_FOLDER_NAME | jq -r '.id')
 
-rm -rf .work
+rm -rf /tmp/.work

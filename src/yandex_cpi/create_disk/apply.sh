@@ -1,6 +1,6 @@
-DISK_SIZE=$(jq -r '.arguments[0]' .work/request.json)
-CLOUD_PROPERTIES=$(jq -r '.arguments[1]' .work/request.json)
-VM_ID=$(jq -r '.arguments[2]' .work/request.json)
+DISK_SIZE=$(jq -r '.arguments[0]' /tmp/.work/request.json)
+CLOUD_PROPERTIES=$(jq -r '.arguments[1]' /tmp/.work/request.json)
+VM_ID=$(jq -r '.arguments[2]' /tmp/.work/request.json)
 DISK_ID=${VM_ID}-$(head /dev/urandom | tr -dc a-z0-9 | head -c 16)
 
 DISK_SIZE_GB=$(($DISK_SIZE / 1024))
