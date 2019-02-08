@@ -1,5 +1,5 @@
-VM_ID=$(jq -r '.arguments[0]' .work/request.json)
-DISK_ID=$(jq -r '.arguments[1]' .work/request.json)
+VM_ID=$(jq -r '.arguments[0]' /tmp/.work/request.json)
+DISK_ID=$(jq -r '.arguments[1]' /tmp/.work/request.json)
 
 GEN_ID=asdasd
 
@@ -26,19 +26,19 @@ yc --token $YC_PASSPORT_TOKEN \
    --folder-name $YC_FOLDER_NAME \
    --format json \
    compute instance get \
-   --full $VM_ID > .work/vm_info.json
+   --full $VM_ID > /tmp/.work/vm_info.json
 
-IP=$(cat .work/vm_info.json | jq -r '.network_interfaces[0].primary_v4_address.address')
-cat .work/vm_info.json  | jq -r '.metadata."user-data"' > .work/old_metadata.json
+IP=$(cat /tmp/.work/vm_info.json | jq -r '.network_interfaces[0].primary_v4_address.address')
+cat /tmp/.work/vm_info.json  | jq -r '.metadata."user-data"' > /tmp/.work/old_metadata.json
 
-cat .work/old_metadata.json 1>&2
+cat /tmp/.work/old_metadata.json 1>&2
 
-cat .work/old_metadata.json \
+cat /tmp/.work/old_metadata.json \
 	| jq '.disks.persistent."'$DISK_ID'".id="'virtio-$GEN_ID'"' \
 	| jq '.disks.persistent."'$DISK_ID'".path="'/dev/disk/by-id/virtio-$GEN_ID'"' \
-	> .work/new_metadata.json
+	> /tmp/.work/new_metadata.json
 
-cat .work/new_metadata.json 1>&2
+cat /tmp/.work/new_metadata.json 1>&2
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
@@ -46,7 +46,7 @@ yc --token $YC_PASSPORT_TOKEN \
    --format json \
    compute instance update \
    $VM_ID \
-   --metadata-from-file user-data=.work/new_metadata.json \
+   --metadata-from-file user-data=/tmp/.work/new_metadata.json \
    1>&2
 
 yc --token $YC_PASSPORT_TOKEN \
