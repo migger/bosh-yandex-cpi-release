@@ -1,7 +1,7 @@
 #!/bin/bash
 
-pkgs_dir=${BOSH_PACKAGES_DIR:-/var/vcap/packages}
-jobs_dir=${BOSH_JOBS_DIR:-/var/vcap/jobs}
+export pkgs_dir=${BOSH_PACKAGES_DIR:-/var/vcap/packages}
+export jobs_dir=${BOSH_JOBS_DIR:-/var/vcap/jobs}
 
 cmd="sh -x $pkgs_dir/yandex_cpi/cpi.sh \
               $jobs_dir/yandex_cpi/config/cpi.json
