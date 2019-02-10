@@ -1,8 +1,7 @@
 ---
 name: s3cmd
 
-dependencies: 
-- python-2.7
+dependencies: [] 
 
 files:
 - s3cmd-2.0.2.tar.gz
