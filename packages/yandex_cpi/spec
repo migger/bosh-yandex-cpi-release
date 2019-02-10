@@ -5,6 +5,7 @@ dependencies:
 - yandex-cloud-cli
 - jq
 - s3cmd
+- uuidgen
 
 files:
 - "**/*.sh"

@@ -1,0 +1,9 @@
+set -e
+
+mkdir -p ${BOSH_INSTALL_TARGET}/bin
+
+echo "#!/bin/bash" > ${BOSH_INSTALL_TARGET}/bin/uuidgen
+echo 'python3 -c "import uuid; print(uuid.uuid4())"' >> ${BOSH_INSTALL_TARGET}/bin/uuidgen
+
+chmod +x ${BOSH_INSTALL_TARGET}/bin/uuidgen
+
