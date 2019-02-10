@@ -1,11 +1,13 @@
 set -e
 
+VERSION=s3cmd-2.0.2
+
 mkdir -p ${BOSH_INSTALL_TARGET}/bin
 cd ${BOSH_INSTALL_TARGET}
-tar xvf ${BOSH_COMPILE_TARGET}/s3cmd-2.0.2.tar.gz
+tar xvf ${BOSH_COMPILE_TARGET}/${VERSION}.tar.gz
 
 echo "#!/bin/bash" > ${BOSH_INSTALL_TARGET}/bin/s3cmd
-echo 'python3 /var/vcap/packages/s3cmd/s3cmd/s3cmd $@' >> ${BOSH_INSTALL_TARGET}/bin/s3cmd
+echo 'python3 ${BOSH_INSTALL_TARGET}/${VERSION}/s3cmd $@' >> ${BOSH_INSTALL_TARGET}/bin/s3cmd
 
 chmod +x ${BOSH_INSTALL_TARGET}/bin/s3cmd
 
