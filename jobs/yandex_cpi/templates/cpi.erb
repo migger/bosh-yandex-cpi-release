@@ -18,7 +18,7 @@ cmd="sh -x $pkgs_dir/yandex_cpi/cpi.sh \
 # there is no guarantee that /var/vcap/sys/log is present
 if [ -d /var/vcap/sys/log ]; then
   # todo do not use sudo
-  exec $cmd 2 >> /var/vcap/sys/log/yandex_cpi/cpi.stderr.log <&0
+  exec $cmd 2>> /var/vcap/sys/log/yandex_cpi/cpi.stderr.log <&0
 else
   exec $cmd <&0
 fi
