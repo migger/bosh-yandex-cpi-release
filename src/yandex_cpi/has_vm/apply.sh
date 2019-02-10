@@ -10,7 +10,7 @@ yc --token $YC_PASSPORT_TOKEN \
    1>&2
 
 if [ $? -eq 0 ]; then 
-  echo '{"result":true}'
+  echo '{"result":true, "error": null, "log": ""}'
 else
-  echo '{"result":false}'
+  echo '{"result":false, "error": null, "log": ""}'
 fi

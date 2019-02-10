@@ -8,5 +8,5 @@ yc --token $YC_PASSPORT_TOKEN \
    $DISK_ID \
    1>&2
 
-echo {}
+echo '{"result": null, "error": null, "log": ""}'
 

@@ -18,5 +18,5 @@ if [ "$?" != "0" ]; then
 	exit 1
 fi
 
-echo '{"result":"'$DISK_ID'"}'
+echo '{"result":"'$DISK_ID'", "error": null, "log": ""}'
 

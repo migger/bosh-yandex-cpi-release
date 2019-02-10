@@ -8,5 +8,5 @@ yc --token $YC_PASSPORT_TOKEN \
    $VM_ID \
    1>&2
 
-echo {}
+echo '{"result": null, "error": null, "log": ""}'
 

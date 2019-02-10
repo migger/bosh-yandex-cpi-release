@@ -65,4 +65,4 @@ while [ "$CODE" -eq "000" ]; do
 done
 
   
-echo '{}'
+echo '{"result": null, "error": null, "log": ""}'

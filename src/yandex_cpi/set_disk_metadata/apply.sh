@@ -10,4 +10,4 @@ yc --token $YC_PASSPORT_TOKEN \
    --labels $METADATA_KV \
    1>&2
 
-echo '{}'
+echo '{"result": null, "error": null, "log": ""}'

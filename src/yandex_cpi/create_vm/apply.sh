@@ -51,4 +51,4 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-echo '{"result":"'$VM_ID'"}'
+echo '{"result":"'$VM_ID'", "error": null, "log": ""}'
