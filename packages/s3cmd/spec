@@ -1,7 +1,8 @@
 ---
 name: s3cmd
 
-dependencies: [] 
+dependencies:
+- s3cmd-deps
 
 files:
 - s3cmd-2.0.2.tar.gz

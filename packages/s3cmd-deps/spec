@@ -1,0 +1,8 @@
+---
+name: s3cmd-deps
+
+dependencies: []
+
+files:
+- python-dateutil-2.8.0.tar.gz
+- six-1.12.0.tar.gz
