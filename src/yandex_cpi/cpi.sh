@@ -1,9 +1,7 @@
 #!/bin/sh
-export PATH=$PATH:/Users/i.mihailyuk/Downloads/s3cmd-2.0.2
-
 export BOSH_PACKAGES_DIR=$pkgs_dir
 
-export PATH=$PATH:$BOSH_PACKAGES_DIR/yandex-cloud-cli/bin:$BOSH_PACKAGES_DIR/jq/bin
+export PATH=$PATH:$BOSH_PACKAGES_DIR/yandex-cloud-cli/bin:$BOSH_PACKAGES_DIR/jq/bin:$BOSH_PACKAGES_DIR/s3cmd/bin
 export BASEDIR=$(dirname $0)
 
 export YC_ENV_JSON=$1
