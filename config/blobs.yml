@@ -9,6 +9,9 @@ jq/jq-linux64:
 python-dateutil-2.8.0.tar.gz:
   size: 327134
   sha: 140cbe261ba86ff30970bd8ca3326f543de91e4d
+python-magic-0.4.15.tar.gz:
+  size: 73194
+  sha: fc69c0d4eef064d585095ee975d3ba089124c1f4
 s3cmd-2.0.2.tar.gz:
   size: 124269
   sha: ac7f62d7a5abd8b8ec1ffb914a32f99e2d551a02
