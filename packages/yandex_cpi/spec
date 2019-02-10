@@ -4,6 +4,7 @@ name: yandex_cpi
 dependencies: 
 - yandex-cloud-cli
 - jq
+- s3cmd
 
 files:
 - "**/*.sh"
