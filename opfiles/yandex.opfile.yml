@@ -59,4 +59,6 @@
 
 - type: replace
   path: /cloud_provider/properties/yandex_cpi?
-    value: *yandex
+  value: *yandex
+
+
