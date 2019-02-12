@@ -44,3 +44,19 @@
 - type: replace
   path: /resource_pools/name=vms/env/bosh/keep_root_password?
   value: true
+
+- type: replace
+  path: /instance_groups/name=bosh/properties/yandex_cpi?
+  value: &yandex
+    token: ((token))
+    cloud_name: ((cloud_name))
+    folder_name: ((folder_name))
+    bucket_name: ((bucket_name))
+    robot_account: ((robot_account))
+    zone: ((zone))
+    network: ((network))
+    subnetwork: ((subnetwork))
+
+- type: replace
+  path: /cloud_provider/properties/yandex_cpi?
+    value: *yandex
