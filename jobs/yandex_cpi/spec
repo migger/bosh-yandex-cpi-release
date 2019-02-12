@@ -11,28 +11,20 @@ packages:
 properties:
   yandex_cpi.token:
     description: 'Token you can get by url: https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb'
-    default: 'AQAAAAAByO4AAATuwSSVTMTTa0Bhpymd34oRwdg'
   yandex_cpi.cloud_name:
     description: "Cloud name"
-    default: 'cloud-b1glho6pdsm66b'
   yandex_cpi.folder_name: 
     description: "forlder name"
-    default: 'cpi-test'
   yandex_cpi.bucket_name:
     description: "Name of bucket to store stemcell images and other"
-    default: 'cloud-foundry'
   yandex_cpi.robot_account:
     description: "Name of serive account for folder"
-    default: 'cpi-robot'
   yandex_cpi.zone:
     description: "Name of zone where bosh director to create"
-    default: 'ru-central1-a'
   yandex_cpi.network:
     description: "Name of virtual private cloud to work within"
-    default: 'default'
   yandex_cpi.subnetwork:
     description: "Name of subnetwork to allocate address in"
-    default: 'infra'
 
   blobstore.provider:
     description: Provider of the blobstore used by director and agent (dav|simple|s3|gcs)
