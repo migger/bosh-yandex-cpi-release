@@ -8,9 +8,5 @@ yc --token $YC_PASSPORT_TOKEN \
    $DISK_ID \
    1>&2
 
-if [ $? -ne 0 ]; then
-       	exit 1
-fi
-
 echo '{"result": null, "error": null, "log": ""}'
 
