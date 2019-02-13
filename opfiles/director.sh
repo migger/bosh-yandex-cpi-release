@@ -1,0 +1,16 @@
+bosh create-env bosh-deployment/bosh.yml \
+                                          --state=xxx-state.json \
+                                          --vars-store=xxx-creds.yml \
+                                          -o bosh-yandex-cpi-release/opfiles/yandex.opfile.yml \
+                                          -v director_name=bosh-1 \
+                                          -v internal_ip=10.0.0.6 \
+                                          -v internal_cidr=10.0.0.0/24 \
+                                          -v internal_gw=10.0.0.1 \
+					  -v token='AQAAAAAByO4AAATuwSSVTMTTa0Bhpymd34oRwdg' \
+	 				  -v cloud_name='cloud-b1glho6pdsm66b'\
+				          -v folder_name='cpi-test' \
+					  -v bucket_name='cloud-foundry' \
+					  -v robot_account='cpi-robot' \
+					  -v zone='ru-central1-a' \
+					  -v network=default \
+				          -v subnetwork='infra'
