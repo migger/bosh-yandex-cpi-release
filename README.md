@@ -73,7 +73,7 @@ mkdir bosh
 
 ```
 sudo apt update
-sudo apt -y install git
+sudo apt -y install git ruby
 ```
 
 ## Клонируем репозиторий
