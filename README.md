@@ -95,7 +95,7 @@ bosh sync-blobs
 
 ## Создаем дев релиз
 ```
-bosh create-release --tarball=/opt/tmp/bosh-yandex-cpi-release-dev.tgz
+bosh create-release --tarball=~/tmp/bosh-yandex-cpi-release-dev.tgz
 ```
 ## Копируем нужные скрипты в свою папку
 ```
