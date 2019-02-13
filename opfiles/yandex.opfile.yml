@@ -4,7 +4,7 @@
   value:
     name: bosh-yandex-cpi
     version: "2.1.0"
-    url: file:///opt/tmp/bosh-yandex-cpi-release-dev.tgz
+    url: file:///home/yc-user/tmp/bosh-yandex-cpi-release-dev.tgz
 
 - type: replace
   path: /resource_pools/name=vms/stemcell?
