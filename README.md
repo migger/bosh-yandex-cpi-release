@@ -62,6 +62,23 @@ yc compute instance create \
 ssh yc-user@84.201.130.87
 ```
 
+## Создаем папку с bosh
+```
+mkdir bosh
+```
+
+## Устанавливаем необходимые программы и библиотеки
+
+```
+sudo apt update
+sudo apt -y install git
+```
+
+## Клонируем репозиторий
+```
+git clone git@github.com:migger/bosh-yandex-cpi-release.git
+```
+
 # Что бы все заработало
 
 1. Создать jumpbox штатными средствами Яндекс Облака (У меня это Ubuntu 18)
