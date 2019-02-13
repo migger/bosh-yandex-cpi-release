@@ -61,4 +61,9 @@
   path: /cloud_provider/properties/yandex_cpi?
   value: *yandex
 
+- type: replace
+  path: /variables/-
+  value:
+    name: bucket_name
+    type: password 
 
