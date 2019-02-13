@@ -79,6 +79,10 @@ sudo apt -y install git
 git clone git@github.com:migger/bosh-yandex-cpi-release.git
 ```
 
+## Устанавливаем bosh cli
+https://bosh.io/docs/cli-v2-install/
+
+
 # Что бы все заработало
 
 1. Создать jumpbox штатными средствами Яндекс Облака (У меня это Ubuntu 18)
