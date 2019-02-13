@@ -4,6 +4,10 @@ JSON=$(yc --token $YC_PASSPORT_TOKEN \
    --format json \
    iam access-key create --service-account-name $YC_ROBOT_ACCOUNT) 
 
+if [ $? -ne 0 ]; then
+	exit 1
+fi
+
 ID=$(echo $JSON | jq -r .access_key.id)
 KEY_ID=$(echo $JSON | jq -r .access_key.key_id)
 SECRET=$(echo $JSON | jq -r .secret)
@@ -22,8 +26,15 @@ mv -v root.img $1 1>&2
 
 s3cmd --config .s3cfg put $1 s3://$YC_BUCKET_NAME/stemcells/$1 1>&2
 
+if [ $? -ne 0 ]; then
+        exit 1
+fi
+
 IMAGE_URL=$(s3cmd --config .s3cfg signurl s3://$YC_BUCKET_NAME/stemcells/$1 +100000 | sed 's/\([^\/]*\)[.]\(storage[.]yandexcloud[.]net\)/\2\/\1/')
 
+if [ $? -ne 0 ]; then
+        exit 1
+fi
 
 cd $EX
 
@@ -33,9 +44,16 @@ yc --token $YC_PASSPORT_TOKEN \
    --format json \
    compute image create --name $1 --source-uri $IMAGE_URL 1>&2
 
+if [ $? -ne 0 ]; then
+        exit 1
+fi
+
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
    --folder-name $YC_FOLDER_NAME \
    --format json \
    iam access-key delete --id $ID 1>&2
 
+if [ $? -ne 0 ]; then
+        exit 1
+fi
