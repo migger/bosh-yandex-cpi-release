@@ -27,7 +27,14 @@ mv -v root.img $1 1>&2
 s3cmd --config .s3cfg put $1 s3://$YC_BUCKET_NAME/stemcells/$1 1>&2
 
 if [ $? -ne 0 ]; then
-        exit 1
+        s3cmd --config .s3cfg mb s3://$YC_BUCKET_NAME 1>&2
+	if [ $? -ne 0 ]; then
+        	exit 1
+	fi
+	s3cmd --config .s3cfg put $1 s3://$YC_BUCKET_NAME/stemcells/$1 1>&2
+	if [ $? -ne 0 ]; then
+        	exit 1
+	fi
 fi
 
 IMAGE_URL=$(s3cmd --config .s3cfg signurl s3://$YC_BUCKET_NAME/stemcells/$1 +100000 | sed 's/\([^\/]*\)[.]\(storage[.]yandexcloud[.]net\)/\2\/\1/')
