@@ -48,7 +48,9 @@ yc compute instance create \
            --zone ru-central1-a \
            --ssh-key ~/.ssh/id_rsa.pub \
            --network-interface subnet-name=infra,nat-ip-version=ipv4,address=10.0.0.5 \
-           --create-boot-disk image-folder-id=standard-images,image-name=ubuntu-1804-1549468804
+           --memory 2 \
+           --cores 1 \
+           --create-boot-disk image-folder-id=standard-images,image-name=ubuntu-1804-1549468804,size=6
 ```
 В выводе ищем
 ```
@@ -82,15 +84,32 @@ git clone git@github.com:migger/bosh-yandex-cpi-release.git
 ## Устанавливаем bosh cli
 https://bosh.io/docs/cli-v2-install/
 
+## Заходим в папку проекта
+```
+cd bosh-yandex-cpi-release
+```
+## Скачиваем блобы
+```
+bosh sync-blobs
+```
 
-# Что бы все заработало
-
-1. Создать jumpbox штатными средствами Яндекс Облака (У меня это Ubuntu 18)
-2. Склонировать проект
-3. Из директори проекта выполнить
+## Создаем дев релиз
 ```
 bosh create-release --tarball=/opt/tmp/bosh-yandex-cpi-release-dev.tgz
 ```
+## Копируем нужные скрипты в свою папку
+```
+cp -v opfiles/*director* ../
+```
+
+## Скачиваем bosh-deployment
+
+```
+cd ..
+git clone https://github.com/cloudfoundry/bosh-deployment.git
+```
+
+
 4. Что бы раскатить
 ```
 bosh create-env bosh-deployment/bosh.yml \
