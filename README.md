@@ -1,6 +1,6 @@
 # Начало работы
 ## Установить yandex cloud cli
-```https://cloud.yandex.ru/docs/cli/quickstart```
+https://cloud.yandex.ru/docs/cli/quickstart
 
 # Что бы все заработало
 
