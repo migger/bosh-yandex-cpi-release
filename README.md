@@ -1,3 +1,7 @@
+# Начало работы
+## Установить yandex cloud cli
+```https://cloud.yandex.ru/docs/cli/quickstart```
+
 # Что бы все заработало
 
 1. Создать jumpbox штатными средствами Яндекс Облака (У меня это Ubuntu 18)
