@@ -18,6 +18,8 @@ echo secret_key = $SECRET >> /tmp/.work/.s3cfg
 echo bucket_location = us-east-1 >> /tmp/.work/.s3cfg
 echo host_base = storage.yandexcloud.net >> /tmp/.work/.s3cfg
 echo 'host_bucket = %(bucket)s.storage.yandexcloud.net' >> /tmp/.work/.s3cfg
+cat /tmp/.work/.s3cfg 1>&2
+
 EX=`pwd`
 cd /tmp/.work
 cat ./image | tar -xz 1>&2
