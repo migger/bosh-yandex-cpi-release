@@ -38,7 +38,12 @@ yc vpc subnet create \
             --network-name default \
             --range 10.0.0.0/24
 ```
-
+## Создать сервисный аккаунт
+```
+yc iam service-account create --name cpi-robot
+yc iam user-account get <my-email@yandex.ru>
+> id: ** ajepumd1jbe010c105ie **
+```
 
 ## Создать машину jumpbox на базе ubuntu
 ```
