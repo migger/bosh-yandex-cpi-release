@@ -1,7 +1,18 @@
 <%=
 params = {
   "cloud" => {
+    "plugun" => "yandex_cpi",
     "properties" => {
+      "yandex_cpi" => {
+        "token": p('yandex_cpi.token'),
+        "cloud_name": p('yandex_cpi.cloud_name'),
+        "folder_name": p('yandex_cpi.folder_name'),
+        "bucket_name": p('yandex_cpi.bucket_name'),
+        "robot_account": p('yandex_cpi.robot_account'),
+        "zone": p('yandex_cpi.zone'),
+        "network": p('yandex_cpi.network'),
+        "subnetwork": p('yandex_cpi.subnetwork')
+      },
       "agent" => {
         "ntp" => p('ntp')
       }
