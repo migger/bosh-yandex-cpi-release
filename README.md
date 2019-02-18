@@ -38,7 +38,18 @@ yc vpc subnet create \
             --network-name default \
             --range 10.0.0.0/24
 ```
-
+## Создать сервисный аккаунт
+```
+yc iam service-account create --name cpi-robot
+```
+в выводе ищем
+```
+id: <<accountId>>
+```
+и выдаем на него права
+```
+yc resource-manager folder add-access-binding --name cloud-foundry --role editor --subject serviceAccount:<<accountId>>
+```
 
 ## Создать машину jumpbox на базе ubuntu
 ```
@@ -73,7 +84,7 @@ mkdir bosh
 
 ```
 sudo apt update
-sudo apt -y install git
+sudo apt -y install git ruby
 ```
 
 ## Клонируем репозиторий
@@ -95,7 +106,7 @@ bosh sync-blobs
 
 ## Создаем дев релиз
 ```
-bosh create-release --tarball=/opt/tmp/bosh-yandex-cpi-release-dev.tgz
+bosh create-release --tarball=~/tmp/bosh-yandex-cpi-release-dev.tgz
 ```
 ## Копируем нужные скрипты в свою папку
 ```
