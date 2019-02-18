@@ -121,7 +121,6 @@ vi director.sh
 ## Скачиваем bosh-deployment
 
 ```
-cd ..
 git clone https://github.com/cloudfoundry/bosh-deployment.git
 ```
 
