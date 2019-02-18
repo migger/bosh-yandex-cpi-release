@@ -58,6 +58,10 @@
     subnetwork: ((subnetwork))
 
 - type: replace
+  path: /instance_groups/name=bosh/jobs/name=yandex_cpi/properties/yandex_cpi?
+  value: *yandex
+
+- type: replace
   path: /cloud_provider/properties/yandex_cpi?
   value: *yandex
 
