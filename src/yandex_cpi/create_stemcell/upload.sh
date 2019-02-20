@@ -39,7 +39,8 @@ if [ $? -ne 0 ]; then
 	fi
 fi
 
-IMAGE_URL=$(s3cmd --config .s3cfg signurl s3://$YC_BUCKET_NAME/stemcells/$1 +100000 | sed 's/\([^\/]*\)[.]\(storage[.]yandexcloud[.]net\)/\2\/\1/')
+IMAGE_URL=$(s3cmd --config .s3cfg signurl s3://$YC_BUCKET_NAME/stemcells/$1 +100000)
+#IMAGE_URL=$(s3cmd --config .s3cfg signurl s3://$YC_BUCKET_NAME/stemcells/$1 +100000 | sed 's/\([^\/]*\)[.]\(storage[.]yandexcloud[.]net\)/\2\/\1/')
 
 if [ $? -ne 0 ]; then
         exit 1
