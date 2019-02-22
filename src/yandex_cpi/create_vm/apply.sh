@@ -7,6 +7,13 @@ DISKS=$(jq -r '.arguments[4]' /tmp/.work/request.json)
 ENVIRONMENT=$(jq -r '.arguments[5]' /tmp/.work/request.json)
 
 IP=$(echo $NETWORKS | jq -r .default.ip)
+ZONE=$(echo $CLOUD_PROPERTIES | jq -r .zone )
+CPU=$(echo $CLOUD_PROPERTIES | jq -r .cpu )
+DISK=$(echo $CLOUD_PROPERTIES | jq -r .disk )
+RAM=$(echo $CLOUD_PROPERTIES | jq -r .ram )
+
+DISK_GB=$(($DISK/1024))
+RAM_GB=$(($RAM/1024))
 
 SYS_DISK_DEVICE_NAME=vol-$(head /dev/urandom | tr -dc a-z0-9 | head -c 16)
 
@@ -36,11 +43,11 @@ yc --token $YC_PASSPORT_TOKEN \
    --folder-name $YC_FOLDER_NAME \
    --format json \
    compute instance create \
-   --zone $YC_ZONE \
+   --zone $ZONE \
    --name $VM_ID \
-   --create-boot-disk name=system,device-name=${SYS_DISK_DEVICE_NAME},image-name=${STEMCELL_ID},size=12 \
-   --memory 4 \
-   --cores 4 \
+   --create-boot-disk name=system,device-name=${SYS_DISK_DEVICE_NAME},image-name=${STEMCELL_ID},size=$DISK_GB \
+   --memory $RAM_GB \
+   --cores $CPU \
    --core-fraction 5 \
    --hostname $VM_ID \
    --metadata-from-file user-data=/tmp/.work/user-data-merged.json \
