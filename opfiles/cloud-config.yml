@@ -14,12 +14,12 @@ vm_types:
   cloud_properties:
     cpu: 2
     ram: 1024
-    disk: 3240
+    disk: 12288
 - name: large
   cloud_properties:
     cpu: 2
     ram: 4096
-    disk: 30_240
+    disk: 12288
 
 disk_types:
 - name: default
@@ -33,6 +33,7 @@ networks:
   subnets:
   - range: 10.0.0.0/23
     gateway: 10.0.0.1
+    reserved: [10.0.0.1-10.0.0.50]
     az: z1
     dns: [8.8.8.8,8.8.4.4]
     cloud_properties:

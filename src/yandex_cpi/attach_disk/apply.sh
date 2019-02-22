@@ -77,12 +77,10 @@ if [ $? -ne 0 ]; then
        	exit 1
 fi
 
-CODE=000
+nc -w 1 -z $IP 22
 
-while [ "$CODE" -eq "000" ]; do
-    sleep 1
-    CODE=$(curl -o /dev/null -w %{http_code} -k https://$IP:6868/agent -X POST --data {\"method\":\"ping\"})
+while [ "$?" -ne "0" ]; do
+    nc -w 1 -z $IP 22
 done
-
   
 echo '{"result": null, "error": null, "log": ""}'
