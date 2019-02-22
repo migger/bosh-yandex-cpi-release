@@ -30,7 +30,7 @@ fi
 
 cat $CLOUD_PROPERTIES | grep ram > /dev/null
 if [ "$?" -ne "0" ]; then
-        RAM=4096
+        RAM=2048
 else
 	RAM=$(echo $CLOUD_PROPERTIES | jq -r .ram )
 fi
