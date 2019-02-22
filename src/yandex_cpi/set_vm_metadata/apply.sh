@@ -1,5 +1,5 @@
 VM_ID=$(jq -r '.arguments[0]' /tmp/.work/request.json)
-METADATA_KV=$(jq -r '.arguments[1]' /tmp/.work/request.json | jq -r '. as $in | keys[] | "\(. | gsub("[^0-9a-z_-]"; "_"))=\($in[.])" ' | tr '\n' ',' | sed 's/,$//' | tr [A-Z] [a-z] | tr : _)
+METADATA_KV=$(jq -r '.arguments[1]' /tmp/.work/request.json | jq -r '. as $in | keys[] | "\(. | gsub("[^0-9a-z_-]"; "_"))=\($in[.] | gsub("[^0-9a-z_-]"; "_"))" ' | tr '\n' ',' | sed 's/,$//' | tr [A-Z] [a-z] | tr : _)
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
