@@ -1,0 +1,16 @@
+{
+  "method": "attach_disk",
+  "arguments": [
+    "vm-f5346b0e-23e4-4fc2-a1e4-4878023ac5cf",
+    "vm-f5346b0e-23e4-4fc2-a1e4-4878023ac5cf-4u8pcfdswgxb015m"
+  ],
+  "context": {
+    "director_uuid": "1e857c89-5fdb-450a-4cc4-48cfaa7d7d4f",
+    "vm": {
+      "stemcell": {
+        "api_version": 2
+      }
+    }
+  },
+  "api_version": 1
+}
