@@ -1,4 +1,4 @@
-DISK_ID=$(jq -r '.arguments[0]' /tmp/.work/request.json)
+DISK_ID=$(jq -r '.arguments[0]' $WORKDIR/request.json)
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
