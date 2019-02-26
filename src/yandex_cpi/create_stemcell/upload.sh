@@ -12,16 +12,16 @@ ID=$(echo $JSON | jq -r .access_key.id)
 KEY_ID=$(echo $JSON | jq -r .access_key.key_id)
 SECRET=$(echo $JSON | jq -r .secret)
 
-echo [default] > /tmp/.work/.s3cfg
-echo access_key = $KEY_ID >> /tmp/.work/.s3cfg
-echo secret_key = $SECRET >> /tmp/.work/.s3cfg 
-echo bucket_location = us-east-1 >> /tmp/.work/.s3cfg
-echo host_base = storage.yandexcloud.net >> /tmp/.work/.s3cfg
-echo 'host_bucket = %(bucket)s.storage.yandexcloud.net' >> /tmp/.work/.s3cfg
-cat /tmp/.work/.s3cfg 1>&2
+echo [default] > $WORKDIR/.s3cfg
+echo access_key = $KEY_ID >> $WORKDIR/.s3cfg
+echo secret_key = $SECRET >> $WORKDIR/.s3cfg 
+echo bucket_location = us-east-1 >> $WORKDIR/.s3cfg
+echo host_base = storage.yandexcloud.net >> $WORKDIR/.s3cfg
+echo 'host_bucket = %(bucket)s.storage.yandexcloud.net' >> $WORKDIR/.s3cfg
+cat $WORKDIR/.s3cfg 1>&2
 
 EX=`pwd`
-cd /tmp/.work
+cd $WORKDIR
 cat ./image | tar -xz 1>&2
 ls -l 1>&2
 mv -v root.img $1 1>&2
