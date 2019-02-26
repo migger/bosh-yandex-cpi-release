@@ -1,10 +1,10 @@
 VM_ID=vm-$(uuidgen | tr '[:upper:]' '[:lower:]')
-AGENT_NAME=$(jq -r '.arguments[0]' /tmp/.work/request.json)
-STEMCELL_ID=$(jq -r '.arguments[1]' /tmp/.work/request.json)
-CLOUD_PROPERTIES=$(jq -r '.arguments[2]' /tmp/.work/request.json)
-NETWORKS=$(jq -r '.arguments[3]' /tmp/.work/request.json)
-DISKS=$(jq -r '.arguments[4]' /tmp/.work/request.json)
-ENVIRONMENT=$(jq -r '.arguments[5]' /tmp/.work/request.json)
+AGENT_NAME=$(jq -r '.arguments[0]' $WORKDIR/request.json)
+STEMCELL_ID=$(jq -r '.arguments[1]' $WORKDIR/request.json)
+CLOUD_PROPERTIES=$(jq -r '.arguments[2]' $WORKDIR/request.json)
+NETWORKS=$(jq -r '.arguments[3]' $WORKDIR/request.json)
+DISKS=$(jq -r '.arguments[4]' $WORKDIR/request.json)
+ENVIRONMENT=$(jq -r '.arguments[5]' $WORKDIR/request.json)
 
 IP=$(echo $NETWORKS | jq -r .default.ip)
 
@@ -40,26 +40,26 @@ RAM_GB=$(($RAM/1024))
 
 SYS_DISK_DEVICE_NAME=vol-$(head /dev/urandom | tr -dc a-z0-9 | head -c 16)
 
-echo '{' > /tmp/.work/user-data.json
-echo '	"agent_id": "'$AGENT_NAME'",' >> /tmp/.work/user-data.json
-echo '	"disks": {' >> /tmp/.work/user-data.json
-echo '		"system": "/dev/disk/by-id/'$SYS_DISK_DEVICE_NAME'-part1"' >> /tmp/.work/user-data.json
-echo '	},' >> /tmp/.work/user-data.json
-echo '	"env": ' >> /tmp/.work/user-data.json
-jq -r '.arguments[5]' /tmp/.work/request.json >> /tmp/.work/user-data.json
-echo '	,' >> /tmp/.work/user-data.json
-echo '	"networks": ' >> /tmp/.work/user-data.json
-echo '	   '$NETWORKS >> /tmp/.work/user-data.json
-echo '	,' >> /tmp/.work/user-data.json
-echo '	"vm": {' >> /tmp/.work/user-data.json
-echo '		"name": "'$VM_ID'"' >> /tmp/.work/user-data.json
-echo '	}' >> /tmp/.work/user-data.json
-echo '}' >> /tmp/.work/user-data.json
+echo '{' > $WORKDIR/user-data.json
+echo '	"agent_id": "'$AGENT_NAME'",' >> $WORKDIR/user-data.json
+echo '	"disks": {' >> $WORKDIR/user-data.json
+echo '		"system": "/dev/disk/by-id/'$SYS_DISK_DEVICE_NAME'-part1"' >> $WORKDIR/user-data.json
+echo '	},' >> $WORKDIR/user-data.json
+echo '	"env": ' >> $WORKDIR/user-data.json
+jq -r '.arguments[5]' $WORKDIR/request.json >> $WORKDIR/user-data.json
+echo '	,' >> $WORKDIR/user-data.json
+echo '	"networks": ' >> $WORKDIR/user-data.json
+echo '	   '$NETWORKS >> $WORKDIR/user-data.json
+echo '	,' >> $WORKDIR/user-data.json
+echo '	"vm": {' >> $WORKDIR/user-data.json
+echo '		"name": "'$VM_ID'"' >> $WORKDIR/user-data.json
+echo '	}' >> $WORKDIR/user-data.json
+echo '}' >> $WORKDIR/user-data.json
 
 
-jq -s '.[0].cloud.properties.agent * .[1]' $YC_ENV_JSON /tmp/.work/user-data.json > /tmp/.work/user-data-merged.json
+jq -s '.[0].cloud.properties.agent * .[1]' $YC_ENV_JSON $WORKDIR/user-data.json > $WORKDIR/user-data-merged.json
 
-cat /tmp/.work/user-data-merged.json 1>&2
+cat $WORKDIR/user-data-merged.json 1>&2
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
@@ -73,7 +73,7 @@ yc --token $YC_PASSPORT_TOKEN \
    --cores $CPU \
    --core-fraction 5 \
    --hostname $VM_ID \
-   --metadata-from-file user-data=/tmp/.work/user-data-merged.json \
+   --metadata-from-file user-data=$WORKDIR/user-data-merged.json \
    --network-interface subnet-name=${YC_SUBNETWORK},address=${IP},nat-ip-version=ipv4\
    1>&2
 
