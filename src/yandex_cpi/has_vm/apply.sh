@@ -1,4 +1,4 @@
-VM_ID=$(jq -r '.arguments[0]' /tmp/.work/request.json)
+VM_ID=$(jq -r '.arguments[0]' $WORKDIR/request.json)
 
 
 yc --token $YC_PASSPORT_TOKEN \
