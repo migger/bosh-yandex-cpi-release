@@ -1,5 +1,5 @@
-DISK_ID=$(jq -r '.arguments[0]' /tmp/.work/request.json)
-METADATA_KV=$(jq -r '.arguments[1]' /tmp/.work/request.json | jq -r '. as $in | keys[] | "\(. | gsub("[^0-9a-z_-]"; "_") | .[0:63])=\($in[.] | gsub("[^0-9a-z_-]"; "_") | .[0:63])" ' | tr '\n' ',' | sed 's/,$//' | tr [A-Z] [a-z] | tr : _)
+DISK_ID=$(jq -r '.arguments[0]' $WORKDIR/request.json)
+METADATA_KV=$(jq -r '.arguments[1]' $WORKDIR/request.json | jq -r '. as $in | keys[] | "\(. | gsub("[^0-9a-z_-]"; "_") | .[0:63])=\($in[.] | gsub("[^0-9a-z_-]"; "_") | .[0:63])" ' | tr '\n' ',' | sed 's/,$//' | tr [A-Z] [a-z] | tr : _)
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
