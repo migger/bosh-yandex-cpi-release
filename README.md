@@ -61,7 +61,7 @@ yc compute instance create \
            --network-interface subnet-name=infra,nat-ip-version=ipv4,address=10.0.0.5 \
            --memory 2 \
            --cores 1 \
-           --create-boot-disk image-folder-id=standard-images,image-name=ubuntu-1804-1549468804,size=6
+           --create-boot-disk image-folder-id=standard-images,image-name=ubuntu-1804-1549468804,size=20
 ```
 В выводе ищем
 ```
