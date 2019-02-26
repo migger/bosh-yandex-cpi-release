@@ -1,5 +1,5 @@
-VM_ID=$(jq -r '.arguments[0]' /tmp/.work/request.json)
-DISK_ID=$(jq -r '.arguments[1]' /tmp/.work/request.json)
+VM_ID=$(jq -r '.arguments[0]' $WORKDIR/request.json)
+DISK_ID=$(jq -r '.arguments[1]' $WORKDIR/request.json)
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
@@ -31,22 +31,22 @@ yc --token $YC_PASSPORT_TOKEN \
    --folder-name $YC_FOLDER_NAME \
    --format json \
    compute instance get \
-   --full $VM_ID > /tmp/.work/vm_info.json
+   --full $VM_ID > $WORKDIR/vm_info.json
 
 if [ $? -ne 0 ]; then
        	exit 1
 fi
 
-IP=$(cat /tmp/.work/vm_info.json | jq -r '.network_interfaces[0].primary_v4_address.address')
-cat /tmp/.work/vm_info.json  | jq -r '.metadata."user-data"' > /tmp/.work/old_metadata.json
+IP=$(cat $WORKDIR/vm_info.json | jq -r '.network_interfaces[0].primary_v4_address.address')
+cat $WORKDIR/vm_info.json  | jq -r '.metadata."user-data"' > $WORKDIR/old_metadata.json
 
-cat /tmp/.work/old_metadata.json 1>&2
+cat $WORKDIR/old_metadata.json 1>&2
 
-cat /tmp/.work/old_metadata.json \
+cat $WORKDIR/old_metadata.json \
 	| jq 'del(.disks.persistent."'$DISK_ID'")' \
-	> /tmp/.work/new_metadata.json
+	> $WORKDIR/new_metadata.json
 
-cat /tmp/.work/new_metadata.json 1>&2
+cat $WORKDIR/new_metadata.json 1>&2
 
 yc --token $YC_PASSPORT_TOKEN \
    --cloud-id $YC_CLOUD_ID \
@@ -54,7 +54,7 @@ yc --token $YC_PASSPORT_TOKEN \
    --format json \
    compute instance update \
    $VM_ID \
-   --metadata-from-file user-data=/tmp/.work/new_metadata.json \
+   --metadata-from-file user-data=$WORKDIR/new_metadata.json \
    1>&2
 
 if [ $? -ne 0 ]; then
