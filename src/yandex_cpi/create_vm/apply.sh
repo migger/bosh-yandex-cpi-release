@@ -8,27 +8,27 @@ ENVIRONMENT=$(jq -r '.arguments[5]' /tmp/.work/request.json)
 
 IP=$(echo $NETWORKS | jq -r .default.ip)
 
-cat $CLOUD_PROPERTIES | grep zone > /dev/null
+echo $CLOUD_PROPERTIES | grep zone > /dev/null
 if [ "$?" -ne "0" ]; then
 	ZONE=$YC_ZONE
 else
 	ZONE=$(echo $CLOUD_PROPERTIES | jq -r .zone )
 fi
-cat $CLOUD_PROPERTIES | grep cpu > /dev/null
+echo $CLOUD_PROPERTIES | grep cpu > /dev/null
 if [ "$?" -ne "0" ]; then
         CPU=1
 else
 	CPU=$(echo $CLOUD_PROPERTIES | jq -r .cpu )
 fi
 
-cat $CLOUD_PROPERTIES | grep disk > /dev/null
+echo $CLOUD_PROPERTIES | grep disk > /dev/null
 if [ "$?" -ne "0" ]; then
         DISK=12288
 else
 	DISK=$(echo $CLOUD_PROPERTIES | jq -r .disk )
 fi
 
-cat $CLOUD_PROPERTIES | grep ram > /dev/null
+echo $CLOUD_PROPERTIES | grep ram > /dev/null
 if [ "$?" -ne "0" ]; then
         RAM=2048
 else
