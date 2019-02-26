@@ -23,7 +23,7 @@ shift
 export YC_SUBNETWORK=$1
 shift
 
-export WORKDIR=/tmp/.work
+export WORKDIR=/tmp/.work_$(head /dev/urandom | tr -dc a-z0-9 | head -c 16)
 
 mkdir -p $WORKDIR
 export HOME=$WORKDIR
