@@ -71,7 +71,7 @@ yc --token $YC_PASSPORT_TOKEN \
    --create-boot-disk name=${VM_ID}-system,device-name=${SYS_DISK_DEVICE_NAME},image-name=${STEMCELL_ID},size=$DISK_GB \
    --memory $RAM_GB \
    --cores $CPU \
-   --core-fraction 5 \
+#   --core-fraction 5 \
    --hostname $VM_ID \
    --metadata-from-file user-data=$WORKDIR/user-data-merged.json \
    --network-interface subnet-name=${YC_SUBNETWORK},address=${IP},nat-ip-version=ipv4\
