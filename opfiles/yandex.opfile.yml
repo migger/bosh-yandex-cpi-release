@@ -9,8 +9,8 @@
 - type: replace
   path: /resource_pools/name=vms/stemcell?
   value:
-    url: https://storage.yandexcloud.net/native-clouds/stemcells%2Fbosh-stemcell-1.11-yandex-kvm-ubuntu-xenial-go_agent.tgz
-    sha1: 13f349211f38df8a8c8bbfce5315f3d1c9cf66c0
+    url: https://storage.yandexcloud.net/native-clouds/stemcells%2Fbosh-stemcell-1.12-yandex-kvm-ubuntu-xenial-go_agent.tgz
+    sha1: fb1d3b41b41fed4ff2509f1e98228527b1270469
 # Add CPI job
 - type: replace
   path: /instance_groups/name=bosh/jobs/-
