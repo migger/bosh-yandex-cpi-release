@@ -41,7 +41,7 @@ if [ "$?" -ne "0" ]; then
 else
 	CODE_FRACTION=100
 	TYPE=$(echo $CLOUD_PROPERTIES | jq -r '.type')
-	if [ $TYPE -eq "mini" ]; then
+	if [ "$TYPE" -eq "mini" ]; then
 		CODE_FRACTION=5
 	fi
 fi
