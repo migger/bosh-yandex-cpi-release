@@ -35,6 +35,17 @@ else
 	RAM=$(echo $CLOUD_PROPERTIES | jq -r .ram )
 fi
 
+echo $CLOUD_PROPERTIES | grep type > /dev/null
+if [ "$?" -ne "0" ]; then
+        CODE_FRACTION=100
+else
+	CODE_FRACTION=100
+	TYPE=$(echo $CLOUD_PROPERTIES | jq -r '.type')
+	if [ $TYPE -eq "mini" ]; then
+		CODE_FRACTION=5
+	fi
+fi
+
 DISK_GB=$(($DISK/1024))
 RAM_GB=$(($RAM/1024))
 
@@ -74,6 +85,7 @@ yc --token $YC_PASSPORT_TOKEN \
    --hostname $VM_ID \
    --metadata-from-file user-data=$WORKDIR/user-data-merged.json \
    --network-interface subnet-name=${YC_SUBNETWORK},address=${IP},nat-ip-version=ipv4\
+   --core-fraction ${CODE_FRACTION}\
    1>&2
 
 if [ $? -ne 0 ]; then

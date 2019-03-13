@@ -10,15 +10,23 @@ azs:
     zone: ru-central1-c
 
 vm_types:
+- name: minimal
+  cloud_properties:
+    type: mini
+    cpu: 1
+    ram: 1024
+    disk: 12288
 - name: default
   cloud_properties:
+    type: standart
     cpu: 2
     ram: 2048
     disk: 12288
 - name: large
   cloud_properties:
+    type: standart
     cpu: 2
-    ram: 4096
+    ram: 2048
     disk: 12288
 
 disk_types:
